@@ -1,4 +1,5 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment, useContext } from 'react';
+import Swal from 'sweetalert2';
 import Tarea from './Tarea';
 import proyectoContext from "../../context/proyectos/proyectoContext";
 
@@ -23,7 +24,26 @@ const ListadoTareas = () => {
 
     //Elimina un proyecto
     const onClickEliminar = () => {
-        eliminarProyecto(proyectoActual.id)
+        Swal.fire({
+			title: "Estás Seguro?",
+			text: "No es posible revertir esto!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#1a202d",
+			cancelButtonColor: "#a00",
+			confirmButtonText: "Si, Borralo!",
+			cancelButtonText: "Cancelar",
+		}).then((result) => {
+            if (result.value) {
+                eliminarProyecto(proyectoActual.id);
+				Swal.fire({
+					title: "Eliminado!",
+					text: `El Proyecto ${proyectoActual.nombre} ha sido eliminado correctamente`,
+					icon: "success",
+					confirmButtonColor: "#2f3848",
+				});
+			}
+		});
     }
 
     return (
