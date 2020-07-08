@@ -13,10 +13,22 @@ const FormTarea = () => {
     //Array destructing para extraer el proyecto actual
     const [ proyectoActual ] = proyecto;
 
+    const onSubmit = e => {
+        e.preventDefault();
+
+        //Validar
+
+        //Pasar la validación
+
+        //Agregar una tarea al State de Tareas
+
+        //Reiniciar el Form
+    }
+
     return (
         <div className="formulario">
             <form
-            
+                onSubmit={onsubmit}
             >
                 <div className="contenedor-input">
                     <input 
