@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import proyectoContext from "../../context/proyectos/proyectoContext";
 import tareaContext from "../../context/tareas/tareaContext";
@@ -11,8 +11,19 @@ const FormTarea = () => {
 
     //Obtener función del context de tarea
     const tareasContext = useContext(tareaContext);
-    const { errortarea, agregarTarea, validarTarea, obtenerTareas } = tareasContext;
-    
+    const { errortarea, tareaseleccionada, agregarTarea, validarTarea, obtenerTareas, actualizarTarea } = tareasContext;
+
+    //Effect que detecta si hay tarea seleccionada
+    useEffect(() => {
+        if (tareaseleccionada !== null) {
+            setTarea(tareaseleccionada)
+        } else {
+            setTarea({
+                nombre: ''
+            })
+        }
+    }, [tareaseleccionada])
+
     //State del formulario
     const [tarea, setTarea] = useState({
         nombre: ''
@@ -43,12 +54,18 @@ const FormTarea = () => {
             return;
         }
 
+        //Revisar si es edicion o nueva tarea
+        if (tareaseleccionada === null) {
+            //tarea nueva
+            //Agregar una tarea al State de Tareas
+            tarea.proyectoId = proyectoActual.id;
+            tarea.estado = false;
+            agregarTarea(tarea);
+        } else {
+            //tarea existente
+            actualizarTarea(tarea);
+        }
         //Pasar la validación
-        //Agregar una tarea al State de Tareas
-        tarea.proyectoId = proyectoActual.id;
-        tarea.estado = false;
-        agregarTarea(tarea);
-
         //Obtener y filtrar las tareas del proyecto actual
         obtenerTareas(proyectoActual.id);
 
@@ -76,7 +93,7 @@ const FormTarea = () => {
                 <div className="contenedor-input">
                     <input 
                         type="submit" 
-                        value="Agregar Tarea" 
+                        value={tareaseleccionada ? 'Editar Tarea' : 'Agregar Tarea'} 
                         className="btn btn-primario ntn-submit btn-block"
 
                     />
