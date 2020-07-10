@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../layout/Footer';
 
 const Login = () => {
 
@@ -71,6 +72,10 @@ const Login = () => {
                 <Link to={'/nueva-cuenta'} className='enlace-cuenta'>
                     Obtener Cuenta
                 </Link>
+
+                <div className="credits">
+                    <Footer />
+                </div>
             </div>
         </div>
     )

@@ -294,7 +294,7 @@ aside  {
 .form-usuario {
     background-color: var(--gris2);
     height: 100vh;
-    min-height: 800px;
+    min-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -306,6 +306,7 @@ aside  {
     width: 95%;
     background-color: var(--blanco);
     border-radius: 1rem;
+    position: relative;
 }
 
 .campo-form {
@@ -337,4 +338,24 @@ aside  {
 /**SweetAlert**/
 .swal2-popup {
   font-size: 100%!important;
+}
+
+.footer {
+  font-size: 1.3rem;
+  color: var(--gris2);
+}
+.footer a {
+  color: var(--gris3);
+  transition: all .3s ease-in-out;
+  font-weight: bold;
+}
+
+.footer a:hover {
+  color: var(--negro);
+}
+
+.credits {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
 }
