@@ -390,3 +390,8 @@ aside  {
   background-color: rgb(230, 78, 78);
   color: var(--blanco);
 }
+
+.cerrar-sesion {
+  color: white;
+  font-weight: bold;
+}
