@@ -75,6 +75,29 @@ const AuthState = props => {
         }
     }
 
+    //Iniciar Sesion
+    const iniciarSesion = async datos => {
+        try {
+            const res = await clienteAxios.post('/api/auth', datos);
+            dispatch({
+                type: LOGIN_EXITOSO,
+                payload: res.data
+            })
+            usuarioAutenticado();
+        } catch (error) {
+            console.log(error.response.data.msg);
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
+
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alerta
+            })
+        }
+    }
+
     return(
         <AuthContext.Provider
             value={{
@@ -83,6 +106,7 @@ const AuthState = props => {
                 usuario: state.usuario,
                 mensaje: state.mensaje,
                 registrarUsuario,
+                iniciarSesion,
             }}
         >{props.children}
 
