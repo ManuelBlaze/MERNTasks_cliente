@@ -35,7 +35,7 @@ const ListadoTareas = () => {
 			cancelButtonText: "Cancelar",
 		}).then((result) => {
             if (result.value) {
-                eliminarProyecto(proyectoActual.id);
+                eliminarProyecto(proyectoActual._id);
 				Swal.fire({
 					title: "Eliminado!",
 					text: `El Proyecto ${proyectoActual.nombre} ha sido eliminado correctamente`,
