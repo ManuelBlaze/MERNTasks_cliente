@@ -18,7 +18,7 @@ const Tarea = ({tarea}) => {
 
     //Funcion para eliminar
     const tareaEliminar = id => {
-        eliminarTarea(id);
+        eliminarTarea(id, proyectoActual._id);
         obtenerTareas(proyectoActual.id)
     }
 
@@ -72,7 +72,7 @@ const Tarea = ({tarea}) => {
                 <button
                     type="button"
                     className="btn btn-secundario"
-                    onClick={() => tareaEliminar(tarea.id)}
+                    onClick={() => tareaEliminar(tarea._id)}
                 ><i className="fas fa-trash"></i></button>
             </div>
         </li>
